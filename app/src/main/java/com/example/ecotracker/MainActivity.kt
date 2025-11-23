@@ -1,20 +1,33 @@
 package com.example.ecotracker
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
+import com.ecotracker.app.ui.screens.dashboard.DashboardScreen
+import com.ecotracker.app.ui.screens.history.HistoryScreen
+import com.ecotracker.app.ui.screens.detail.DetailScreen
+import com.ecotracker.app.ui.theme.EcoTrackerTheme
 
-class MainActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        setContent {
+            EcoTrackerTheme{
+                val navController = rememberNavController()
+                NavHost(navController = navController, startDestination = "dashboard")
+                    composable("dashboard"){ DashboardScreen(navController)}
+                    composable("history"){ HistoryScreen(navController) }
+                    composable("detail/{id}") { backStackEntry ->
+                        val id = backStackEntry.arguments?.getString("id") ?: ""
+                        DetailScreem(navController, id)
+                    }
+            }
         }
     }
 }
