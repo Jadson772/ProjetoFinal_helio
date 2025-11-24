@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Eco Tracker</string>
+    <string name="manh_chuvosa">Manhã chuvosa</string>
+    <string name="todo">TODO</string>
+    <string name="_25">25º</string>
+    <string name="h_27_l_18">H: 27 L:18</string>
 </resources>
