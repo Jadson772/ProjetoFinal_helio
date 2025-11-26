@@ -1,4 +1,4 @@
-package com.example.ecotracker
+package com.ecotracker.app
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -18,15 +18,16 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            EcoTrackerTheme{
+            EcoTrackerTheme {
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = "dashboard")
-                    composable("dashboard"){ DashboardScreen(navController)}
-                    composable("history"){ HistoryScreen(navController) }
+                NavHost(navController = navController, startDestination = "dashboard") {
+                    composable("dashboard") { DashboardScreen(navController) }
+                    composable("history") { HistoryScreen(navController) }
                     composable("detail/{id}") { backStackEntry ->
                         val id = backStackEntry.arguments?.getString("id") ?: ""
-                        DetailScreem(navController, id)
+                        DetailScreen(navController, id)
                     }
+                }
             }
         }
     }
