@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Eco Tracker"
 include(":app")
- 
+include(":mylibrary")
