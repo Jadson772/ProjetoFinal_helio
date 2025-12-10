@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace = "com.example.ecotracker"
-    compileSdk = 36
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.ecotracker"
         minSdk = 26
-        targetSdk = 36
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -66,6 +66,8 @@ dependencies {
     implementation("javax.inject:javax.inject:1")
     implementation("com.google.android.material:material:1.8.0")
     implementation("com.google.dagger:hilt-android:2.57.2")
+    implementation("androidx.room:room-runtime:2.5.0")
+    implementation("androidx.room:room-ktx:2.5.0")
     kapt("androidx.room:room-compiler:2.5.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -73,5 +75,5 @@ dependencies {
 }
 
 kapt{
-    correnctErrorTypes = true
+    correctErrorTypes = true
 }
